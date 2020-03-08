@@ -1,0 +1,54 @@
+<!-- 
+    2. drag;
+	-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HomeWork</title>
+  <style>
+    .myElem {
+        width: 100px;
+        height: 100px;
+        background-color: indianred;
+    }
+  </style>
+</head>
+<body>
+    <div class="myElem"></div>
+
+  <script>
+    let myElem = document.querySelector(".myElem");
+
+    myElem.onmousedown = function(e) {
+        let coords = getCoords(myElem);
+        let shiftX = e.pageX - coords.left;
+        let shiftY = e.pageY - coords.top;
+
+        myElem.style.position = "absolute";
+
+        document.onmousemove = function(e) {
+            moveAt(e);
+        }
+
+        function moveAt(e) {
+            myElem.style.left = e.pageX - shiftX + "px";
+            myElem.style.top = e.pageY - shiftY + "px";
+        }
+
+        myElem.onmouseup = function() {
+            document.onmousemove = null;
+            myElem.onmouseup = null;
+        }
+    }
+
+    function getCoords(elem) {
+        let box = elem.getBoundingClientRect();
+        return {
+            top: box.top,
+            left: box.left
+        }
+    }
+  </script>
+</body>
+</html>

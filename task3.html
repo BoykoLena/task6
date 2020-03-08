@@ -1,0 +1,59 @@
+<!-- 
+   3. создайте div, при клике на него, div начинает двигаться вправо, при клике на 
+    кнопку - останавливается, при попадании div к краю окна, он переходит к 
+    началу окна.
+	-->
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>HomeWork</title>
+      <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .myBtn {
+            position: absolute;
+            top: 120px;
+        }
+
+        .myElem {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: indianred;
+        }
+      </style>
+    </head>
+    <body>
+        <div class="myElem"></div>
+        <button class="myBtn" onclick="myStopFunction()">Остановить движение</button>
+    
+      <script>
+        let myElem = document.querySelector(".myElem");
+        let left = 0;
+        let myTimer;
+        
+        myElem.onclick = right; 
+
+        function right () {
+            myTimer = setInterval(function() {
+                if (left === window.screen.width) {
+                    left = (-99);
+                    myElem.style.left = left + 'px';
+                } else {
+                    left = left + 1; 
+                    myElem.style.left = left + 'px';
+                }
+            }, 5);
+        }        
+
+        function myStopFunction() {
+            clearInterval(myTimer);
+        }
+      </script>
+    </body>
+    </html>
+    
